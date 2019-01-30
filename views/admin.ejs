@@ -10,36 +10,44 @@
       <% data.forEach(function(obj) { %>
       <h2 class="filename-h2"><%= obj.filename %></h2>
       <div class="for-each-wrap">
-        <img src="public/photos/<%= obj.filename %>" />
+        <img class="processing-image" src="public/photos/<%= obj.filename %>" />
         <form
           class="for-each-form"
           id="<%= obj.filename %>"
           action="receiving"
           method="post"
         >
-          <label for="date">date</label>
-          <input
-            type="text"
-            name="date"
-            id="<%= obj.filename %>-date"
-            value="<%= obj.noExif ? '' : obj.originalDate %>"
-          />
-          <label for="description">description</label>
-          <input
-            type="text"
-            name="description"
-            id="<%= obj.filename %>-description"
-          />
-          <label for="tags">comma-separated tags</label>
-          <input type="text" name="tags" id="<%= obj.filename %>-tags" />
-          <input
-            class="hidden"
-            type="text"
-            name="filename"
-            id="<%= obj.filename %>-filename"
-            value="<%= obj.filename %>"
-          />
-          <button class="btn btn-success" type="submit">Submit</button>
+          <div class="form-group">
+            <label for="date">date</label>
+            <input
+              type="text"
+              name="date"
+              id="<%= obj.filename %>-date"
+              value="<%= obj.noExif ? '' : obj.originalDate %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="description">description</label>
+            <input
+              type="text"
+              name="description"
+              id="<%= obj.filename %>-description"
+            />
+          </div>
+          <div class="form-group">
+            <label for="tags">comma-separated tags</label>
+            <input type="text" name="tags" id="<%= obj.filename %>-tags" />
+          </div>
+          <div class="form-group">
+            <input
+              class="hidden"
+              type="text"
+              name="filename"
+              id="<%= obj.filename %>-filename"
+              value="<%= obj.filename %>"
+            />
+          </div>
+          <button class="btn btn-primary" type="submit">Submit</button>
         </form>
       </div>
 
@@ -48,6 +56,6 @@
 
     <footer><% include ./partials/footer %></footer>
 
-    <!-- <script type="text/javascript" src="public/funcs.js"></script> -->
+    <% include ./partials/bootstrapjs %>
   </body>
 </html>

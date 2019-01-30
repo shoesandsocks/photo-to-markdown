@@ -6,12 +6,14 @@ body {
   display: grid;
   grid-template-rows: auto 1fr auto;
 }
-img {
+
+.processing-image {
   max-width: 310px;
 }
 .main-wrap {
   max-width: 700px;
   margin: 0 auto;
+  padding-top: 2rem;
 }
 .for-each-wrap {
   display: flex;
@@ -31,11 +33,11 @@ img {
   height: 100%;
   width: 48%;
   min-width: 310px;
-  padding: 0.5rem;
+  /* padding: 0.5rem; */
 }
 input[type="text"] {
   width: 100%;
-  margin-bottom: 0.5rem;
+  /* margin-bottom: 0.5rem; */
 }
 
 /* grid */

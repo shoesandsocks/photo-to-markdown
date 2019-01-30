@@ -4,9 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "backpack",
+    "build": "backpack build",
+    "run": "npm run build && node ./build/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "RL Brown <rlbrown72@gmail.com> (https://www.rich-text.net)",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "backpack-core": "^0.8.3",
+    "ejs": "^2.6.1",
+    "exif": "^0.6.0",
+    "express": "^4.16.4"
+  }
 }

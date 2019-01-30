@@ -7,7 +7,7 @@ body {
   grid-template-rows: auto 1fr auto;
 }
 img {
-  max-width: 300px;
+  max-width: 310px;
 }
 .main-wrap {
   max-width: 700px;
@@ -16,12 +16,21 @@ img {
 .for-each-wrap {
   display: flex;
   flex-flow: row wrap;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: space-between;
+  align-items: center;
+}
+@media screen and (max-width: 650px) {
+  .for-each-wrap {
+    justify-content: center;
+  }
+  .filename-h2 {
+    text-align: center;
+  }
 }
 .for-each-form {
   height: 100%;
-  width: 40%;
+  width: 48%;
+  min-width: 310px;
   padding: 0.5rem;
 }
 input[type="text"] {

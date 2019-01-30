@@ -8,7 +8,7 @@
     <header><% include ./partials/header %></header>
     <main class="main-wrap">
       <% data.forEach(function(obj) { %>
-      <h2><%= obj.filename %></h2>
+      <h2 class="filename-h2"><%= obj.filename %></h2>
       <div class="for-each-wrap">
         <img src="public/photos/<%= obj.filename %>" />
         <form

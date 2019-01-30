@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include ./partials/head %>
+  </head>
+
+  <body class="container">
+    <header><% include ./partials/header %></header>
+    <main class="main-wrap">
+      <h2>About Photo Markdowner</h2>
+      <p>
+        You put your photos in the `public/photos` folder and navigate to the
+        /admin page. There you can edit the date (it will hopefully be populated
+        with the photo's creation date, if your pics have valid EXIF encoded in
+        them), and add a title, description, and tags.
+      </p>
+      <p>
+        When you submit an entry, it is validated and converted to a markdown
+        file, ready to be copied into your .md-capable blog.
+      </p>
+    </main>
+
+    <footer><% include ./partials/footer %></footer>
+
+    <!-- <script type="text/javascript" src="public/funcs.js"></script> -->
+  </body>
+</html>

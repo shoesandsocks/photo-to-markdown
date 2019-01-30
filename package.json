@@ -16,6 +16,7 @@
     "backpack-core": "^0.8.3",
     "ejs": "^2.6.1",
     "exif": "^0.6.0",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "express-formidable": "^1.2.0"
   }
 }

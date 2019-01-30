@@ -1,74 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
+    <% include ./partials/head %>
+  </head>
 
-<meta charset="UTF-8">
-<title>Photo Markdowner</title>
+  <body class="container">
+    <header><% include ./partials/header %></header>
+    <main class="main-wrap">
+      <h2>Photo Markdowner</h2>
+      <p>It's a whole thing.</p>
+    </main>
 
-<!-- CSS (load bootstrap from a CDN) -->
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<style>
-    body    { padding-top:50px; }
-    img {
-        max-width: 300px;
-    }
-    .for-each-wrap {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: flex-start;
-        align-items: flex-start;
-    }
-    .for-each-form  {
-        height: 100%;
-        width: 40%;
-        padding: .5rem;
-    }
-    input[type=text] {
-        height: 70%;
-        width: 90%;
-    }
-</style>
+    <footer><% include ./partials/footer %></footer>
 
-</head>
-
-<body class="container">
-
-<header>
-<nav class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
-  
-    <div class="navbar-header">
-        <a class="navbar-brand" href="#">
-            <span class="glyphicon glyphicon glyphicon-camera"></span>
-            Photo Markdowner
-        </a>
-
-        <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-        </ul>
-    </div>
-  
-  </div>
-  </nav>
-</header>
-
-<main>
-<% data.forEach(function(obj) { %>
-    <div><h2><%= obj.filename %></h2></div>
-    <div class="for-each-wrap">
-        <img src="photos/<%= obj.filename %>" />
-        <form class="for-each-form" id="<%= obj.filename %>">
-            <label for="description">description</label>
-            <input type="text" name="description" id="<%= obj.filename %>" />
-            <label for="tags">comma-separated tags</label>
-            <input type="text" name="tags" id="<%= obj.filename %>-tags" />
-        </form>
-    </div>
-
-<% }); %>
-</main>
-
-<footer>
-<p class="text-center text-muted">fuck</p>
-</footer> 
+    <!-- <script type="text/javascript" src="public/funcs.js"></script> -->
+  </body>
+</html>

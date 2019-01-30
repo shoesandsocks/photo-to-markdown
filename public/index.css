@@ -1,0 +1,49 @@
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+img {
+  max-width: 300px;
+}
+.main-wrap {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.for-each-wrap {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.for-each-form {
+  height: 100%;
+  width: 40%;
+  padding: 0.5rem;
+}
+input[type="text"] {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+/* grid */
+header {
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+main {
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+footer {
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+/* helper */
+.hidden {
+  display: none;
+}

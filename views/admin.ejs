@@ -27,11 +27,23 @@
             />
           </div>
           <div class="form-group">
-            <label for="description">description</label>
+            <label for="title">title</label>
+            <input type="text" name="title" id="<%= obj.filename %>-title" />
+          </div>
+          <div class="form-group">
+            <label for="description">alt-text description</label>
             <input
               type="text"
               name="description"
               id="<%= obj.filename %>-description"
+            />
+          </div>
+          <div class="form-group">
+            <label for="body">post body</label>
+            <input
+              type="text"
+              name="body"
+              id="<%= obj.filename %>-body"
             />
           </div>
           <div class="form-group">

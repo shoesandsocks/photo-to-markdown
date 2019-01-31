@@ -47,9 +47,7 @@ function getExif (filename) {
 }
 
 const imageFiles = fs.readdirSync(path.resolve('./public/photos'))
-
 const exifArray = []
-
 imageFiles.forEach(file => {
   getExif(file).then(reply => exifArray.push(reply))
 })

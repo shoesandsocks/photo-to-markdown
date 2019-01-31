@@ -31,20 +31,22 @@ photoRouter.post('/', (req, res) => {
   const year = saveDate.getFullYear()
   const month = saveDate.getMonth()
   const date = saveDate.getDate()
-  const slug =
-    req.fields.title !== ''
-      ? slugged(req.fields.title)
-      : req.fields.filename.split('.')[0]
-  const folder = path.resolve(__dirname, '../markdown-posts')
-
+  const { filename, title } = req.fields
+  const slug = title !== '' ? slugged(title) : filename.split('.')[0]
+  const markdownFolder = path.resolve(__dirname, '../markdown-posts')
+  const existingPhotoFolder = path.resolve(__dirname, '../public/photos')
   // make md file from fields
   const md = mdMaker({ ...req.fields })
 
   // write file and copy photo
-  console.log(`${folder}/${year}-${month + 1}-${date}-${slug}`)
-  fs.writeFileSync(`/${folder}/${year}-${month}-${date}-${slug}.md`, md)
-
+  console.log(`${markdownFolder}/${year}-${month + 1}-${date}-${slug}`)
+  fs.writeFileSync(`/${markdownFolder}/${year}-${month}-${date}-${slug}.md`, md)
+  fs.copyFileSync(
+    `${existingPhotoFolder}/${filename}`,
+    `${markdownFolder}/${filename}`
+  )
   // remove photo from original list
+  fs.unlinkSync(`${existingPhotoFolder}/${filename}`)
 
   // return user to admin
   return res.redirect('/admin')

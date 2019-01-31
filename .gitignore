@@ -2,6 +2,7 @@
 build
 markdown-posts
 public/photos
+.DS_store
 
 # Logs
 logs

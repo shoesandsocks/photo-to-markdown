@@ -14,7 +14,6 @@ BODY
 
 const mdMaker = obj => {
   const { filename, tags, description, date, title, body } = obj
-  // console.log(typeof tags)
 
   let fileDate = new Date(date)
   if (isNaN(fileDate)) {
@@ -33,7 +32,7 @@ const mdMaker = obj => {
     !Array.isArray(tagArray) ||
     (tagArray.length === 1 && tagArray[0] === '')
   ) {
-    tagsStringed = '  - auto-generated'
+    tagsStringed = '  - auto-generated\n'
   } else {
     tagArray.forEach(tag => (tagsStringed += `  - ${tag}\n`))
   }
@@ -45,7 +44,7 @@ const mdMaker = obj => {
     .replace('FILENAME', filename)
     .replace('DESCRIPTION', fileDescription)
     .replace('TAG', tagsStringed)
-  // console.log(newfile)
+
   return newfile
 }
 

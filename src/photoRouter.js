@@ -22,7 +22,6 @@ function getExif (filename) {
             console.log(error)
             return failSuccessfully()
           }
-          // console.log(`eee: ${JSON.stringify(exifData)}`)
           if (!exifData || !exifData.exif || !exifData.exif.CreateDate) {
             return failSuccessfully()
           }
@@ -46,17 +45,25 @@ function getExif (filename) {
   })
 }
 
-const imageFiles = fs.readdirSync(path.resolve('./public/photos'))
-const exifArray = []
-imageFiles.forEach(file => {
-  getExif(file).then(reply => exifArray.push(reply))
-})
+// const imageFiles = fs.readdirSync(path.resolve('./public/photos'))
+// const exifArray = []
+// imageFiles.forEach(file => {
+//   getExif(file).then(reply => exifArray.push(reply))
+// })
 
 const photoRouter = express.Router()
+
 photoRouter.use('/', (req, res) => {
-  res.render('admin', {
-    data: exifArray
+  const imageFiles = fs.readdirSync(path.resolve('./public/photos'))
+  const exifArray = []
+  imageFiles.forEach(file => {
+    getExif(file).then(reply => exifArray.push(reply))
   })
+  setTimeout(() => {
+    res.render('admin', {
+      data: exifArray
+    })
+  }, 500)
 })
 
 export default photoRouter

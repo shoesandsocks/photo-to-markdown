@@ -39,7 +39,6 @@ photoRouter.post('/', (req, res) => {
   const md = mdMaker({ ...req.fields })
 
   // write file and copy photo
-  console.log(`${markdownFolder}/${year}-${month + 1}-${date}-${slug}`)
   fs.writeFileSync(`/${markdownFolder}/${year}-${month}-${date}-${slug}.md`, md)
   fs.copyFileSync(
     `${existingPhotoFolder}/${filename}`,

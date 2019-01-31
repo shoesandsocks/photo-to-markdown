@@ -31,13 +31,11 @@ body {
 }
 .for-each-form {
   height: 100%;
-  width: 48%;
+  width: 49%;
   min-width: 310px;
-  /* padding: 0.5rem; */
 }
 input[type="text"] {
   width: 100%;
-  /* margin-bottom: 0.5rem; */
 }
 
 /* grid */

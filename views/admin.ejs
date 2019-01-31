@@ -24,11 +24,17 @@
               name="date"
               id="<%= obj.filename %>-date"
               value="<%= obj.noExif ? '' : obj.originalDate %>"
+              onkeypress="return event.keyCode != 13;"
             />
           </div>
           <div class="form-group">
             <label for="title">title</label>
-            <input type="text" name="title" id="<%= obj.filename %>-title" />
+            <input
+              type="text"
+              name="title"
+              id="<%= obj.filename %>-title"
+              onkeypress="return event.keyCode != 13;"
+            />
           </div>
           <div class="form-group">
             <label for="description">alt-text description</label>
@@ -36,19 +42,27 @@
               type="text"
               name="description"
               id="<%= obj.filename %>-description"
+              onkeypress="return event.keyCode != 13;"
             />
           </div>
           <div class="form-group">
             <label for="body">post body</label>
-            <input
-              type="text"
+            <textarea
+              class="form-textarea"
               name="body"
               id="<%= obj.filename %>-body"
-            />
+              rows="5"
+              cols="33"
+            ></textarea>
           </div>
           <div class="form-group">
             <label for="tags">comma-separated tags</label>
-            <input type="text" name="tags" id="<%= obj.filename %>-tags" />
+            <input
+              type="text"
+              name="tags"
+              id="<%= obj.filename %>-tags"
+              onkeypress="return event.keyCode != 13;"
+            />
           </div>
           <div class="form-group">
             <input

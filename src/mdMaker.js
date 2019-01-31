@@ -1,58 +1,54 @@
+// const isValidDate = date => Boolean(+date) && date.getDate() == day
+// // https://medium.com/@esganzerla/simple-date-validation-with-javascript-caea0f71883c
+
 let template = `
 ---
 date: DATE
 title: TITLE
 tags:
-  - TAG
-  - TAG
-  - TAG
-  - TAG
-  - TAG
-  - TAG
-  - TAG
+TAG
 ---
 
 ![DESCRIPTION](./FILENAME)
 
 BODY
-`;
+`
 
-const mdMaker = (obj) => {
-  console.log(`obj is ${JSON.stringify(obj)}`)
-  const { filename, tags, description, date, title, body } = obj;
-  let fileDate = new Date(date);
-  if (typeof fileDate.getMonth !== 'function') {
-    fileDate = new Date();
+const mdMaker = obj => {
+  const { filename, tags, description, date, title, body } = obj
+  // console.log(typeof tags)
+
+  let fileDate = new Date(date)
+  if (isNaN(fileDate)) {
+    fileDate = new Date()
   }
-  let fileTitle = title;
-  if (typeof fileTitle !== 'string') {
-    fileTitle = ''
+  const fileTitle = typeof title !== 'string' ? '' : title
+  const fileBody = typeof body !== 'string' ? '' : body
+  const fileDescription =
+    typeof description !== 'string' || description === ''
+      ? 'this post was auto-generated without alt text'
+      : description
+
+  const tagArray = [...new Set(tags.split(',').map(tag => tag.trim()))]
+  let tagsStringed = ''
+  if (
+    !Array.isArray(tagArray) ||
+    (tagArray.length === 1 && tagArray[0] === '')
+  ) {
+    tagsStringed = '  - auto-generated'
+  } else {
+    tagArray.forEach(tag => (tagsStringed += `  - ${tag}\n`))
   }
-  let fileBody = body;
-  if (typeof fileBody !== 'string') {
-    fileBody = ''
-  }
-  let fileDescription = description;
-  if (typeof fileDescription !== 'string') {
-    fileDescription = 'this post was auto-generated without alt text'
-  }
-  let fileTags = tags;
-  if (!Array.isArray(fileTags)) {
-    fileTags = ['auto-generated'];
-  }
-  let newfile = template
+
+  const newfile = template
     .replace('DATE', fileDate)
     .replace('TITLE', fileTitle)
     .replace('BODY', fileBody)
     .replace('FILENAME', filename)
-    .replace('DESCRIPTION', fileDescription);
-  fileTags.forEach(tag => {
-    newfile = newfile.replace(/  -TAG/, tag);
-  })
-  newfile = newfile.replace(/  - TAG\n/g, '')
+    .replace('DESCRIPTION', fileDescription)
+    .replace('TAG', tagsStringed)
   console.log(newfile)
-  return newfile;
+  return newfile
 }
 
-
-export default mdMaker;
+export default mdMaker

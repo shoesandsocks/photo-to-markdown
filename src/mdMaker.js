@@ -1,13 +1,11 @@
 // const isValidDate = date => Boolean(+date) && date.getDate() == day
 // // https://medium.com/@esganzerla/simple-date-validation-with-javascript-caea0f71883c
 
-let template = `
----
+let template = `---
 date: DATE
 title: TITLE
 tags:
-TAG
----
+TAG---
 
 ![DESCRIPTION](./FILENAME)
 
@@ -47,7 +45,7 @@ const mdMaker = obj => {
     .replace('FILENAME', filename)
     .replace('DESCRIPTION', fileDescription)
     .replace('TAG', tagsStringed)
-  console.log(newfile)
+  // console.log(newfile)
   return newfile
 }
 

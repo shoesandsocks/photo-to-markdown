@@ -42,7 +42,7 @@ photoRouter.post('/', (req, res) => {
   fs.writeFileSync(`${markdownFolder}/${year}-${month}-${date}-${slug}.md`, md)
   fs.copyFileSync(
     `${existingPhotoFolder}/${filename}`,
-    `${markdownFolder}/${filename}`
+    `${markdownFolder}/${year}-${month}-${date}-${filename}`
   )
   // remove photo from original list
   fs.unlinkSync(`${existingPhotoFolder}/${filename}`)

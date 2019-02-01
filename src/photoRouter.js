@@ -21,10 +21,9 @@ function getExif (filename) {
           if (error) {
             if (error.code === 'NOT_A_JPEG') {
               console.log('not-a-jpeg error')
-              return null
             }
             console.log(error)
-            return null
+            return failSuccessfully()
           }
           if (!exifData || !exifData.exif || !exifData.exif.CreateDate) {
             return failSuccessfully()
@@ -49,18 +48,17 @@ function getExif (filename) {
   })
 }
 
-// const imageFiles = fs.readdirSync(path.resolve('./public/photos'))
-// const exifArray = []
-// imageFiles.forEach(file => {
-//   getExif(file).then(reply => exifArray.push(reply))
-// })
+const limitFiletypes = str => {
+  const suffix = str.split('.')[1].toLowerCase()
+  return ['jpeg', 'jpg', 'png'].includes(suffix)
+}
 
 const photoRouter = express.Router()
 
 photoRouter.use('/', (req, res) => {
   const imageFiles = fs.readdirSync(path.resolve('./public/photos'))
   const exifArray = []
-  imageFiles.forEach(file => {
+  imageFiles.filter(limitFiletypes).forEach(file => {
     getExif(file).then(reply => exifArray.push(reply))
   })
   setTimeout(() => {

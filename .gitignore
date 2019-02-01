@@ -1,7 +1,7 @@
 #rlb
 build
 markdown-posts
-public/photos
+public/photos/*
 .DS_store
 
 # Logs

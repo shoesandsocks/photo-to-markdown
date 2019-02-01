@@ -4,6 +4,12 @@ import path from 'path'
 
 import { ExifImage } from 'exif'
 
+// function getAllExif (arrayOfFilenames) {
+//   return new Promise (function (resolve, reject) {
+
+//   })
+// }
+
 function getExif (filename) {
   return new Promise(function (resolve, reject) {
     const failSuccessfully = () =>
@@ -57,15 +63,15 @@ const photoRouter = express.Router()
 
 photoRouter.use('/', (req, res) => {
   const imageFiles = fs.readdirSync(path.resolve('./public/photos'))
-  const exifArray = []
-  imageFiles.filter(limitFiletypes).forEach(file => {
-    getExif(file).then(reply => exifArray.push(reply))
-  })
-  setTimeout(() => {
-    res.render('admin', {
-      data: exifArray
-    })
-  }, 500)
+
+  Promise.all(
+    imageFiles.filter(limitFiletypes).map(file => getExif(file))
+  ).then(exifArray => res.render('admin', { data: exifArray }))
+  /* callback to .map() returns array of promises, so wrapping in
+   * Promise.all and chaining with a .then() that contains
+   * the res.render gives us the async behavior we need
+   * (instead of a hacky settimeout)
+   */
 })
 
 export default photoRouter

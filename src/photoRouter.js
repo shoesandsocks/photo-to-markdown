@@ -19,8 +19,12 @@ function getExif (filename) {
         function (error, exifData) {
           // callback
           if (error) {
+            if (error.code === 'NOT_A_JPEG') {
+              console.log('not-a-jpeg error')
+              return null
+            }
             console.log(error)
-            return failSuccessfully()
+            return null
           }
           if (!exifData || !exifData.exif || !exifData.exif.CreateDate) {
             return failSuccessfully()

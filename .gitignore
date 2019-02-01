@@ -1,6 +1,6 @@
 #rlb
 build
-markdown-posts
+markdown-posts/*
 public/photos/*
 .DS_store
 

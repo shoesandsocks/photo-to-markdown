@@ -29,7 +29,7 @@ photoRouter.post('/', (req, res) => {
     saveDate = new Date()
   }
   const year = saveDate.getFullYear()
-  const month = saveDate.getMonth()
+  const month = saveDate.getMonth() + 1
   const date = saveDate.getDate()
   const { filename, title } = req.fields
   const slug = title !== '' ? slugged(title) : filename.split('.')[0]
@@ -39,7 +39,7 @@ photoRouter.post('/', (req, res) => {
   const md = mdMaker({ ...req.fields })
 
   // write file and copy photo
-  fs.writeFileSync(`/${markdownFolder}/${year}-${month}-${date}-${slug}.md`, md)
+  fs.writeFileSync(`${markdownFolder}/${year}-${month}-${date}-${slug}.md`, md)
   fs.copyFileSync(
     `${existingPhotoFolder}/${filename}`,
     `${markdownFolder}/${filename}`

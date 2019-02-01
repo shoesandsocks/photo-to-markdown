@@ -21,8 +21,11 @@ function getExif (filename) {
           if (error) {
             if (error.code === 'NOT_A_JPEG') {
               console.log('not-a-jpeg error')
+            } else if (error.code === 'NO_EXIF_SEGMENT') {
+              console.log('no exif found')
+            } else {
+              console.log(error)
             }
-            console.log(error)
             return failSuccessfully()
           }
           if (!exifData || !exifData.exif || !exifData.exif.CreateDate) {
@@ -56,7 +59,12 @@ const limitFiletypes = str => {
 const photoRouter = express.Router()
 
 photoRouter.use('/', (req, res) => {
-  const imageFiles = fs.readdirSync(path.resolve('./public/photos'))
+  let imageFiles = [];
+  try {
+    imageFiles = fs.readdirSync(path.resolve('./public/photos'))
+  } catch (e) {
+    console.log(`no photos: ${e}`)
+  }
   const exifArray = []
   imageFiles.filter(limitFiletypes).forEach(file => {
     getExif(file).then(reply => exifArray.push(reply))

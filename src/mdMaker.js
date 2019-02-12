@@ -1,30 +1,20 @@
-// const isValidDate = date => Boolean(+date) && date.getDate() == day
-// // https://medium.com/@esganzerla/simple-date-validation-with-javascript-caea0f71883c
-
-// let template = `---
-// date: 'DATE'
-// title: 'TITLE'
-// tags:
-// TAG---
-
-// ![DESCRIPTION](./FILENAME)
-
-// BODY
-// `
-
-/* NEXT TEMPLATE IS FOR PUPPYREY.ONLINE. VERY ANNOYING 
-* does not accomodate alt-text/description, works awkwardly.
-* solution is to rebuild puppyrey.online and re-do markdowns...
-*/
-
+/**
+ * exported function mdMaker returns a blog-post style markdown file from a given object
+ * - the template for the markdown is hard coded but easily changed
+ * - the object must have properties { filename, tags, description, date, title, body },
+ *    although the function's logic can deal with *some* errors
+ * 
+ */
 let template = `---
 date: 'DATE'
 title: 'TITLE'
 slug: 'SLUG'
-mfphoto:
+mf_photo:
   - 'FILENAME'
 tags:
 TAG---
+
+![DESCRIPTION](FILENAME)
 
 BODY
 `
@@ -40,9 +30,9 @@ const mdMaker = obj => {
   if (isNaN(saveDate)) {
     saveDate = new Date()
   }
-  const year = saveDate.getFullYear()
-  const month = saveDate.getMonth() + 1
-  const datee = saveDate.getDate()
+  // const year = saveDate.getFullYear()
+  // const month = saveDate.getMonth() + 1
+  // const day = saveDate.getDate()
 
   let fileDate = new Date(date)
   if (isNaN(fileDate)) {
@@ -50,10 +40,10 @@ const mdMaker = obj => {
   }
   const fileTitle = typeof title !== 'string' ? '' : title
   const fileBody = typeof body !== 'string' ? '' : body
-  // const fileDescription =
-  //   typeof description !== 'string' || description === ''
-  //     ? 'this post was auto-generated without alt text'
-  //     : description
+  const fileDescription =
+    typeof description !== 'string' || description === ''
+      ? 'this post was auto-generated without alt text'
+      : description
 
   const tagArray = [...new Set(tags.split(',').map(tag => tag.trim()))]
   let tagsStringed = ''
@@ -61,7 +51,7 @@ const mdMaker = obj => {
     !Array.isArray(tagArray) ||
     (tagArray.length === 1 && tagArray[0] === '')
   ) {
-    tagsStringed = '  - rey\n'
+    tagsStringed = '  - auto-generated\n'
   } else {
     tagArray.forEach(tag => (tagsStringed += `  - ${tag}\n`))
   }
@@ -70,9 +60,10 @@ const mdMaker = obj => {
     .replace('DATE', fileDate.toISOString())
     .replace('TITLE', fileTitle)
     .replace('BODY', fileBody)
-    .replace('FILENAME', `${year}-${month}-${datee}-${filename}`) // for puppyrey. could just be 'filename'
-    // .replace('DESCRIPTION', fileDescription) // OFF for puppyrey.online
-    .replace('SLUG', slug) // optional? need for puppyrey.online
+    .replace('FILENAME', `./assets/${filename}`)
+    .replace('FILENAME', `./assets/${filename}`) // i'm so lazy
+    .replace('DESCRIPTION', fileDescription)
+    .replace('SLUG', slug) // optional? 
     .replace('TAG', tagsStringed)
 
   return newfile

@@ -17,7 +17,7 @@ app.use('/public', express.static(path.join(__dirname, '../public')))
 app.use('/admin', photoRouter)
 app.use('/receiving', receivingRouter)
 
-app.get('/', (req, res) => res.render('index'))
-app.get('/about', (req, res) => res.render('about'))
+app.get('/', (req, res) => res.render('index', {route: 'root'}))
+app.get('/about', (req, res) => res.render('about', {route: 'about'}))
 
 app.listen(port, () => console.log(`on ${port}`))

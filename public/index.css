@@ -15,6 +15,16 @@ body {
   margin: 0 auto;
   padding-top: 2rem;
 }
+h1 {
+  font-size: 22px;
+}
+h2 {
+  font-size: 19px;
+}
+.body-p {
+  max-width: 500px;
+  text-align: justify;
+}
 .for-each-wrap {
   display: flex;
   flex-flow: row wrap;

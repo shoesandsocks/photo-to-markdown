@@ -9,8 +9,6 @@ let template = `---
 date: 'DATE'
 title: 'TITLE'
 slug: 'SLUG'
-mf_photo:
-  - 'FILENAME'
 tags:
 TAG---
 
@@ -60,8 +58,7 @@ const mdMaker = obj => {
     .replace('DATE', fileDate.toISOString())
     .replace('TITLE', fileTitle)
     .replace('BODY', fileBody)
-    .replace('FILENAME', `./assets/${filename}`)
-    .replace('FILENAME', `./assets/${filename}`) // i'm so lazy
+    .replace('FILENAME', `./${filename}`)
     .replace('DESCRIPTION', fileDescription)
     .replace('SLUG', slug) // optional? 
     .replace('TAG', tagsStringed)

@@ -54,7 +54,7 @@ function getExif (filename) {
 
 const limitFiletypes = str => {
   const filetype = path.parse(str).ext
-  return ['.jpeg', '.jpg', '.png'].includes(filetype)
+  return ['.jpeg', '.jpg', '.png'].includes(filetype.toLowerCase())
 }
 
 const photoRouter = express.Router()

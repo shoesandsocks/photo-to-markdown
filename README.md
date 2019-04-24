@@ -6,10 +6,9 @@
 
 Clone the repo, `cd` into it, `npm run dev`.° That's it.
 
-Actually before you run `npm run dev`, put your photos in the `public/photos` folder.
-Navigate to the `/admin` page. There you can edit the date (it will hopefully be populated
-with the photo's creation date, if your pics have valid EXIF encoded in
-them), and add a title, description, and tags.
+Put your photos in the `public/photos` folder. Navigate to the `/admin` page. There you can edit
+the date (it will hopefully be populated with the photo's creation date, if your pics have valid
+EXIF encoded in them), and add a title, description, and tags.
 
 When you submit an entry, it is validated and converted to a markdown
 file, ready to be copied into your .md-capable blog. Markdown files should start to pop up in
@@ -24,5 +23,5 @@ tough to add additional fields to the form then use the data from those fields i
 
 ---
 
-°<sup>It uses [Backpack](https://www.npmjs.com/package/backpack-core)
-under the hood (overkill for a small project but I like it); running in dev mode seems harmless enough.</sup>
+° <sub> It uses [Backpack](https://www.npmjs.com/package/backpack-core)
+under the hood (overkill for a small project but I like it); running in dev mode seems harmless enough.</sub>

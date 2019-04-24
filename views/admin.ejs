@@ -4,82 +4,86 @@
     <% include ./partials/head %>
   </head>
 
-  <body class="container">
-    <header><% include ./partials/header %></header>
-    <main class="main-wrap">
-      <% data.forEach(function(obj) { %>
-      <h2 class="filename-h2"><%= obj.filename %></h2>
-      <div class="for-each-wrap">
-        <img class="processing-image" src="public/photos/<%= obj.filename %>" />
-        <form
-          class="for-each-form"
-          id="<%= obj.filename %>"
-          action="receiving"
-          method="post"
-        >
-          <div class="form-group">
-            <label for="date">date</label>
-            <input
-              type="text"
-              name="date"
-              id="<%= obj.filename %>-date"
-              value="<%= obj.noExif ? '' : obj.originalDate %>"
-              onkeypress="return event.keyCode != 13;"
-            />
+  <body class="container-fluid">
+    <header><% include ./partials/header {route: route}%></header>
+    <div class="row">
+      <main class="col pt-5">
+        <% data.forEach(function(obj) { %>
+          <div class="title-plus-wrap border-bottom border-success">
+              <p class="filename-h2"><%= obj.filename %></p>
+              <div class="for-each-wrap d-flex flex-wrap justify-content-between align-items-center">
+                <img class="processing-image" src="public/photos/<%= obj.filename %>" />
+                <form
+                  class="for-each-form h-100 w-50 pb-5"
+                  id="<%= obj.filename %>"
+                  action="receiving"
+                  method="post"
+                >
+                  <div class="form-group">
+                    <label for="date">date</label>
+                    <input
+                      type="text"
+                      name="date"
+                      id="<%= obj.filename %>-date"
+                      value="<%= obj.noExif ? '' : obj.originalDate %>"
+                      onkeypress="return event.keyCode != 13;"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="title">title</label>
+                    <input
+                      type="text"
+                      name="title"
+                      id="<%= obj.filename %>-title"
+                      onkeypress="return event.keyCode != 13;"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="description">alt-text description</label>
+                    <input
+                      type="text"
+                      name="description"
+                      id="<%= obj.filename %>-description"
+                      onkeypress="return event.keyCode != 13;"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="body">post body</label>
+                    <textarea
+                      class="form-textarea"
+                      name="body"
+                      id="<%= obj.filename %>-body"
+                      rows="5"
+                      cols="33"
+                    ></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="tags">comma-separated tags</label>
+                    <input
+                      type="text"
+                      name="tags"
+                      id="<%= obj.filename %>-tags"
+                      onkeypress="return event.keyCode != 13;"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <input
+                      class="hidden"
+                      type="text"
+                      name="filename"
+                      id="<%= obj.filename %>-filename"
+                      value="<%= obj.filename %>"
+                    />
+                  </div>
+                  <button class="btn btn-primary" type="submit">Submit</button>
+                </form>
+              </div>
           </div>
-          <div class="form-group">
-            <label for="title">title</label>
-            <input
-              type="text"
-              name="title"
-              id="<%= obj.filename %>-title"
-              onkeypress="return event.keyCode != 13;"
-            />
-          </div>
-          <div class="form-group">
-            <label for="description">alt-text description</label>
-            <input
-              type="text"
-              name="description"
-              id="<%= obj.filename %>-description"
-              onkeypress="return event.keyCode != 13;"
-            />
-          </div>
-          <div class="form-group">
-            <label for="body">post body</label>
-            <textarea
-              class="form-textarea"
-              name="body"
-              id="<%= obj.filename %>-body"
-              rows="5"
-              cols="33"
-            ></textarea>
-          </div>
-          <div class="form-group">
-            <label for="tags">comma-separated tags</label>
-            <input
-              type="text"
-              name="tags"
-              id="<%= obj.filename %>-tags"
-              onkeypress="return event.keyCode != 13;"
-            />
-          </div>
-          <div class="form-group">
-            <input
-              class="hidden"
-              type="text"
-              name="filename"
-              id="<%= obj.filename %>-filename"
-              value="<%= obj.filename %>"
-            />
-          </div>
-          <button class="btn btn-primary" type="submit">Submit</button>
-        </form>
-      </div>
+        
 
-      <% }); %>
-    </main>
-
+        <% }); %>
+      </main>
+    </div>
     <footer><% include ./partials/footer %></footer>
 
     <% include ./partials/bootstrapjs %>

@@ -21,7 +21,7 @@ function getExif (filename) {
           // callback
           if (error) {
             if (error.code === 'NOT_A_JPEG') {
-              console.log('not-a-jpeg error')
+              console.log(`not-a-jpeg error (hopefully it's a png)`)
             } else if (error.code === 'NO_EXIF_SEGMENT') {
               console.log('no exif found')
             } else {
@@ -69,7 +69,7 @@ photoRouter.use('/', (req, res) => {
   }
   Promise.all(
     imageFiles.filter(limitFiletypes).map(file => getExif(file))
-  ).then(exifArray => res.render('admin', { data: exifArray }))
+  ).then(exifArray => res.render('admin', { data: exifArray, route: 'admin' }))
   /* callback to .map() returns array of promises, so wrapping in
    * Promise.all and chaining with a .then() that contains
    * the res.render gives us the async behavior we need

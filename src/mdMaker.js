@@ -1,6 +1,3 @@
-// const isValidDate = date => Boolean(+date) && date.getDate() == day
-// // https://medium.com/@esganzerla/simple-date-validation-with-javascript-caea0f71883c
-
 let template = `---
 date: DATE
 title: TITLE

@@ -1,7 +1,7 @@
 {
   "name": "@shoesandsocks/photos-to-markdown",
   "version": "1.0.0",
-  "description": "",
+  "description": "Turn a folder of images into markdown blog posts.",
   "main": "index.js",
   "scripts": {
     "dev": "backpack",
@@ -9,7 +9,7 @@
     "start": "npm run build && node ./build/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["markdown", "jpg", "png", "blog", "posts"],
   "author": "RL Brown <rlbrown72@gmail.com> (https://www.rich-text.net)",
   "license": "MIT",
   "dependencies": {

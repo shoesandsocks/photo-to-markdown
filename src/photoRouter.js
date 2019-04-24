@@ -4,11 +4,6 @@ import path from 'path'
 
 import { ExifImage } from 'exif'
 
-// function getAllExif (arrayOfFilenames) {
-//   return new Promise (function (resolve, reject) {
-
-//   })
-// }
 
 function getExif (filename) {
   return new Promise(function (resolve, reject) {
@@ -58,8 +53,8 @@ function getExif (filename) {
 }
 
 const limitFiletypes = str => {
-  const suffix = str.split('.')[1].toLowerCase()
-  return ['jpeg', 'jpg', 'png'].includes(suffix)
+  const filetype = path.parse(str).ext
+  return ['.jpeg', '.jpg', '.png'].includes(filetype)
 }
 
 const photoRouter = express.Router()
@@ -68,6 +63,7 @@ photoRouter.use('/', (req, res) => {
   let imageFiles = []
   try {
     imageFiles = fs.readdirSync(path.resolve('./public/photos'))
+    // imageFiles = imageFiles.map(name => sanitize(name))
   } catch (e) {
     console.log(`no photos: ${e}`)
   }

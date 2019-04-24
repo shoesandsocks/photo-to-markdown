@@ -27,6 +27,25 @@
         tough to add additional fields to the form then use the data from those fields in the
         `mdMaker.`
       </p>
+      <h2>Other thoughts</h2>
+      <p>
+        There's almost no validation or sanitization of inputs here; this is code a person runs locally for
+        their own benefit -- I doubt anyone would vandalize their own project, but if there are
+        any genuine errors or file-writing problems, I'd like to know about them and work on fixes.
+      </p>
+      <p>
+        Copies of each photo are also saved in the same folder as the markdown posts, because
+        that's how I organize <a href="https://www.rich-text.net/stream">my Gatsby blog</a>.
+        Consequently, the markdown template's relative path to the image is simply
+        <code>./filename.jpg</code>. You could save all the images to a separate photos folder,
+        and tweak the template to include the correct relative path. Again, maybe not a beginner
+        task, but not impossible.
+      </p>
+      <p>
+        Combining both of the paragraphs above: This code should be non-destructive; the original
+        photos aren't manipulated, just evaluated and copied. That said, back up your priceless
+        memories before you run them through this thing...
+      </p>
     </main>
 
     <footer><% include ./partials/footer %></footer>

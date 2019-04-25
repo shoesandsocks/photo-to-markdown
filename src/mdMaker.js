@@ -1,4 +1,6 @@
-let template = `---
+import rey from './config'
+
+var template = `---
 date: DATE
 title: TITLE
 tags:
@@ -9,14 +11,37 @@ TAG---
 BODY
 `
 
+if (rey) {
+  template = `---
+date: DATE
+title: TITLE
+slug: 'SLUG'
+mfphoto:
+  - 'https://puppyrey.online/src/pages/images/FILENAME'
+category: social
+tags:
+TAG  - rey
+---
+
+BODY
+`
+}
+
+
+
 const mdMaker = obj => {
-  const { filename, tags, description, date, title, body } = obj
+  const { tags, description, date, title, body, slug, year, month, day } = obj
+  let filename = obj.filename; // might get reassigned
 
   let fileDate = new Date(date)
   if (isNaN(fileDate)) {
     fileDate = new Date()
   }
-  const fileTitle = typeof title !== 'string' ? '' : title
+  fileDate = fileDate.toISOString()
+
+  let fileTitle = typeof title !== 'string' ? '' : title
+  if (fileTitle === '') { fileTitle = "''"} // to get actual quotes into md
+
   const fileBody = typeof body !== 'string' ? '' : body
   const fileDescription =
     typeof description !== 'string' || description === ''
@@ -34,6 +59,10 @@ const mdMaker = obj => {
     tagArray.forEach(tag => (tagsStringed += `  - ${tag}\n`))
   }
 
+  if (rey) {
+    filename = `${year}-${month}-${day}-${slug}-${filename}`;
+  }
+
   const newfile = template
     .replace('DATE', fileDate)
     .replace('TITLE', fileTitle)
@@ -42,7 +71,12 @@ const mdMaker = obj => {
     .replace('DESCRIPTION', fileDescription)
     .replace('TAG', tagsStringed)
 
-  return newfile
+  if (rey) {
+    return newfile.replace('SLUG', slug)
+  } else {
+    return newfile
+  }
+  // return newfile
 }
 
 export default mdMaker

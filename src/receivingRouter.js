@@ -1,12 +1,12 @@
 import express from 'express'
-
-import mdMaker from './mdMaker'
 import fs from 'fs'
 import path from 'path'
 
+import mdMaker from './mdMaker'
+import rey from './config'
+
 const fail = res => res.redirect('/admin')
 
-const slugged = text => text.replace(/ /g, '-')
 const requiredFields = [
   'date',
   'filename',
@@ -26,24 +26,39 @@ photoRouter.post('/', (req, res) => {
   // setup a bunch of variables
   let saveDate = new Date(req.fields.date)
   if (isNaN(saveDate)) {
+    console.log('cannot parse given date')
     saveDate = new Date()
   }
-  const year = saveDate.getFullYear()
-  const month = saveDate.getMonth() + 1
-  const date = saveDate.getDate()
-  const { filename, title } = req.fields
-  const slug = title !== '' ? slugged(title) : filename.split('.')[0]
+  const year = saveDate.getFullYear().toString()
+  let month = (saveDate.getMonth() + 1).toString()
+  month = month.padStart(2, '0')
+  let day = (saveDate.getDate()).toString()
+  day = day.padStart(2, '0')
+
+  const { filename } = req.fields
+  const slug = (Math.floor(Math.random()*90000) + 10000);
+
   const markdownFolder = path.resolve(__dirname, '../markdown-posts')
   const existingPhotoFolder = path.resolve(__dirname, '../public/photos')
   // make md file from fields
-  const md = mdMaker({ ...req.fields })
+  const md = mdMaker({ ...req.fields, slug, year, month, day }) // passing date comps in case mdMaker needs(e.g. for rey blog)
 
   // write file and copy photo
-  fs.writeFileSync(`${markdownFolder}/${year}-${month}-${date}-${slug}.md`, md)
+  fs.writeFileSync(`${markdownFolder}/${year}-${month}-${day}-${slug}.md`, md)
+
+  if (rey) {
+    fs.copyFileSync(
+      `${existingPhotoFolder}/${filename}`,
+      `${markdownFolder}/${year}-${month}-${day}-${slug}-${filename}` // to conform to rey blog file style
+    )
+    // N.B.: The slug is needed in filename b/c reyblog uses slug to build posts. 
+    // really needs to be re-architected over there, to simplify here, but emojishrug.
+  } else
   fs.copyFileSync(
     `${existingPhotoFolder}/${filename}`,
     `${markdownFolder}/${filename}`
   )
+
   // remove photo from original list
   fs.unlinkSync(`${existingPhotoFolder}/${filename}`)
 

@@ -9,7 +9,13 @@
     "start": "npm run build && node ./build/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["markdown", "jpg", "png", "blog", "posts"],
+  "keywords": [
+    "markdown",
+    "jpg",
+    "png",
+    "blog",
+    "posts"
+  ],
   "author": "RL Brown <rlbrown72@gmail.com> (https://www.rich-text.net)",
   "license": "MIT",
   "dependencies": {

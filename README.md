@@ -22,6 +22,10 @@ it's easy enough for a hobbyist to figure out. For that matter, it wouldn't be t
 tough to add additional fields to the form then use the data from those fields in the
 `mdMaker.`
 
+(These screenshots aren't great but you get the idea...)
+
+![screenshot of form](./public/admin/form.png) ![screenshot of resulting markdown file](./public/admin/md.png)
+
 ---
 
 ° <sub> It uses [Backpack](https://www.npmjs.com/package/backpack-core)

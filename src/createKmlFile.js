@@ -1,4 +1,7 @@
 const rootURL = 'https://www.porknachos.com/notifier/file'
+
+const clean = string => string.replace(/_/g, ' ').replace(/\.(jpg|png|JPG|PNG)/, "")
+
 const dmsToDecimal = (array) => {
   const d = array[0]
   const m = array[1]
@@ -7,10 +10,16 @@ const dmsToDecimal = (array) => {
 }
 
 const templateHead = 
-`<kml xmlns=\"http://www.opengis.net/kml/2.2\">`
+`<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns=\"http://www.opengis.net/kml/2.2\">
+<Document>
+<open>1</open>
+<description>DESCRIPTION</description>
+`
 
 const templateFoot =
-`</kml>`
+`</Document>
+</kml>`
 
 export default (exifArray) => {
   return new Promise((resolve, reject) => {
@@ -37,7 +46,7 @@ export default (exifArray) => {
       if (GPSAltitudeRef === 1) alt *= 1 // right? underwater?
       if (lat && lon && alt) {
         kmlLayerFile +=
-`<Placemark><name>${filename.replace('_', ' ')}</name>
+`<Placemark><name>${clean(filename)}</name>
 <description>
 <![CDATA[
 <a href="${rootURL}/${filename}">

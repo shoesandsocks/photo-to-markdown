@@ -22,7 +22,7 @@ kmlRouter.use('/', (req, res) => {
         return res.render('make-kml', { data: kmlFile, route: 'make-kml' })
       })
   } catch {
-    return res.render('make-kml', { data: kmlFile, route: 'make-kml' })
+    return res.render('make-kml', { data: {}, route: 'make-kml' })
   }
 })
 

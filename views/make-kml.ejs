@@ -10,9 +10,13 @@
       <main class="col pt-5">
 
         <p>Make KML from the following?</p>
+        <textarea id="description-text" rows=2 cols=80 placeholder="type a description"></textarea>
+        <br />
         <% if (data.kmlLayerFile) { %>
         <button id="kml-btn" class="btn btn-success" type="submit">Okay</button>
+        <br />
         <code id="kml-code" class="hidden"><%= data.kmlLayerFile %></code>
+        <br />
         <% data.filenames.forEach(function(stringName) { %>
           <div class="for-each-wrap d-flex flex-wrap justify-content-between align-items-center">
             <p><%= stringName %></p>

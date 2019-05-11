@@ -4,6 +4,7 @@ import formible from 'express-formidable'
 
 import photoRouter from './photoRouter'
 import receivingRouter from './receivingRouter'
+import kmlRouter from './kmlRouter'
 
 const port = process.env.PORT || 3001
 const app = express()
@@ -14,7 +15,8 @@ app.use(formible()) // to get fields and files form form-data submissions
 
 app.use('/public', express.static(path.join(__dirname, '../public')))
 
-app.use('/admin', photoRouter)
+app.use('/make-kml', kmlRouter)
+app.use('/make-posts', photoRouter)
 app.use('/receiving', receivingRouter)
 
 app.get('/', (req, res) => res.render('index', {route: 'root'}))

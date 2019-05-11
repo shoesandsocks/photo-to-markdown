@@ -27,14 +27,24 @@
       </li>
       <li class="nav-item">
           <a class="nav-link
-            <% if (route !== 'root' && route !== 'about') {%>
+            <% if (route === 'make-posts') {%>
             active 
             <% } %>"
-            href="/admin"
+            href="/make-posts"
           >
-          Admin
+          Make Posts
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link
+          <% if (route === 'make-kml') {%>
+          active 
+          <% } %>"
+          href="/make-kml"
+        >
+        Make KMLLayer
+      </a>
+    </li>
       <li class="nav-item">
           <a class="nav-link
             <% if (route === 'about') {%>

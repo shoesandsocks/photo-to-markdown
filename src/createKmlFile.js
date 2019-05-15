@@ -2,12 +2,7 @@ const rootURL = 'https://www.porknachos.com/notifier/file'
 
 const clean = string => string.replace(/_/g, ' ').replace(/\.(jpg|png|JPG|PNG)/, "")
 
-const dmsToDecimal = (array) => {
-  const d = array[0]
-  const m = array[1]
-  const s = array[2]
-  return Number(d) + Number(m/60) + Number(s/3600)
-}
+import { dmsToDecimal } from './functions.js'
 
 const templateHead = 
 `<?xml version="1.0" encoding="UTF-8"?>
@@ -43,7 +38,7 @@ export default (exifArray) => {
       let lon = dmsToDecimal(GPSLongitude)
       if (GPSLongitudeRef === "W") lon *= -1
       const alt = GPSAltitude
-      if (GPSAltitudeRef === 1) alt *= 1 // right? underwater?
+      if (GPSAltitudeRef === 1) alt *= 1
       if (lat && lon && alt) {
         kmlLayerFile +=
 `<Placemark><name>${clean(filename)}</name>

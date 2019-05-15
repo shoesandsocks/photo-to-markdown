@@ -3,6 +3,13 @@ import path from 'path'
 
 import { ExifImage } from 'exif'
 
+export const dmsToDecimal = (array) => {
+  const d = array[0]
+  const m = array[1]
+  const s = array[2]
+  return Number(d) + Number(m/60) + Number(s/3600)
+}
+
 export const getExif = (filename, kml = false) => {
   return new Promise(function (resolve, reject) {
     const failSuccessfully = () =>

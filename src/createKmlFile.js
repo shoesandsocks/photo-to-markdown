@@ -1,24 +1,23 @@
-const rootURL = 'https://www.porknachos.com/notifier/file'
+const rootURL = "https://www.porknachos.com/files/benches";
 
-const clean = string => string.replace(/_/g, ' ').replace(/\.(jpg|png|JPG|PNG)/, "")
+const clean = string =>
+  string.replace(/_/g, " ").replace(/\.(jpg|png|JPG|PNG)/, "");
 
-import { dmsToDecimal } from './functions.js'
+import { dmsToDecimal } from "./functions.js";
 
-const templateHead = 
-`<?xml version="1.0" encoding="UTF-8"?>
+const templateHead = `<?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns=\"http://www.opengis.net/kml/2.2\">
 <Document>
 <open>1</open>
 <description>DESCRIPTION</description>
-`
+`;
 
-const templateFoot =
-`</Document>
-</kml>`
+const templateFoot = `</Document>
+</kml>`;
 
-export default (exifArray) => {
+export default exifArray => {
   return new Promise((resolve, reject) => {
-    if (exifArray.length == 0) reject(new Error('No data in array.'))
+    if (exifArray.length == 0) reject(new Error("No data in array."));
     let kmlLayerFile = templateHead;
     const filenames = [];
     exifArray.forEach(exif => {
@@ -30,18 +29,17 @@ export default (exifArray) => {
         GPSLongitude,
         GPSLongitudeRef,
         GPSAltitude,
-        GPSAltitudeRef
+        GPSAltitudeRef,
       } = gps;
 
-      let lat = dmsToDecimal(GPSLatitude)
-      if (GPSLatitudeRef === "S") lat *= -1
-      let lon = dmsToDecimal(GPSLongitude)
-      if (GPSLongitudeRef === "W") lon *= -1
-      const alt = GPSAltitude
-      if (GPSAltitudeRef === 1) alt *= 1
+      let lat = dmsToDecimal(GPSLatitude);
+      if (GPSLatitudeRef === "S") lat *= -1;
+      let lon = dmsToDecimal(GPSLongitude);
+      if (GPSLongitudeRef === "W") lon *= -1;
+      const alt = GPSAltitude;
+      if (GPSAltitudeRef === 1) alt *= 1;
       if (lat && lon && alt) {
-        kmlLayerFile +=
-`<Placemark><name>${clean(filename)}</name>
+        kmlLayerFile += `<Placemark><name>${clean(filename)}</name>
 <description>
 <![CDATA[
 <a href="${rootURL}/${filename}">
@@ -52,16 +50,16 @@ export default (exifArray) => {
 <Point>
 <coordinates>${lon},${lat},${alt}</coordinates>
 </Point>
-</Placemark>`
+</Placemark>`;
         filenames.push(filename);
       } else {
-        console.log(`not importing ${filename}. Missing EXIF data.`)
+        console.log(`not importing ${filename}. Missing EXIF data.`);
       }
     });
 
     kmlLayerFile += templateFoot;
 
     // console.log(file)
-    resolve({ filenames, kmlLayerFile});
-  })
-}
+    resolve({ filenames, kmlLayerFile });
+  });
+};

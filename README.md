@@ -7,7 +7,7 @@
 Clone the repo, `cd` into it, `npm install` to install dependencies, then `npm run dev`.°
 Visit `http://localhost:3001` in your browser.
 
-Put your photos in the `public/photos` folder. Navigate to the `/admin` page. There you can edit
+Put your photos in the `public/photos` folder. Navigate to the `/make-posts` page. There you can edit
 the date (it will hopefully be populated with the photo's creation date, if your pics have valid
 EXIF encoded in them), and add a title, description, and tags.
 

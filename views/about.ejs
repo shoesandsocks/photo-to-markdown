@@ -10,43 +10,50 @@
       <main class="col pt-5">
         <h2>About Photo Markdowner</h2>
         <p>
-          Put your photos in the <code>public/photos</code> folder. Navigate to the <code>/admin</code> page.
-          There you can edit the date (it will hopefully be populated
-          with the photo's creation date, if your pics have valid EXIF encoded in
-          them), and add a title, description, and tags.
+          Put your photos in the <code>public/photos</code> folder. Navigate to
+          the <code>/make-posts</code> page. There you can edit the date (it
+          will hopefully be populated with the photo's creation date, if your
+          pics have valid EXIF encoded in them), and add a title, description,
+          and tags.
         </p>
         <p>
           When you submit an entry, it is validated and converted to a markdown
-          file, ready to be copied into your .md-capable blog. Markdown files should start to pop up in
-          the <code>markdown-posts</code> folder.
+          file, ready to be copied into your .md-capable blog. Markdown files
+          should start to pop up in the <code>markdown-posts</code> folder.
         </p>
         <p>
-          Obvious(?) note: Your blog's markdown files are different from mine; adjust the template at the top
-          of <code>src/mdMaker.js</code> as appropriate - whatever frontmatter you want, whether you want
-          more/other content in the body of each post... it's maybe not for beginners, but I think
-          it's easy enough for a hobbyist to figure out. For that matter, it wouldn't be too
-          tough to add additional fields to the form then use the data from those fields in
-        <code>src/mdMaker.js</code>.
+          Obvious(?) note: Your blog's markdown files are different from mine;
+          adjust the template at the top of <code>src/mdMaker.js</code> as
+          appropriate - whatever frontmatter you want, whether you want
+          more/other content in the body of each post... it's maybe not for
+          beginners, but I think it's easy enough for a hobbyist to figure out.
+          For that matter, it wouldn't be too tough to add additional fields to
+          the form then use the data from those fields in
+          <code>src/mdMaker.js</code>.
         </p>
         <h2>Other thoughts</h2>
         <p>
-          There's not a lot of input sanitization here; this is code a person runs locally for
-          their own benefit -- I doubt anyone would vandalize their own project, but if there are
-          any genuine errors or file-writing problems, I'd like to know about them and work on fixes.
+          There's not a lot of input sanitization here; this is code a person
+          runs locally for their own benefit -- I doubt anyone would vandalize
+          their own project, but if there are any genuine errors or file-writing
+          problems, I'd like to know about them and work on fixes.
         </p>
         <p>
-          Copies of each photo are also saved in the same folder as the markdown posts, because
-          that's how I organize <a href="https://www.rich-text.net/stream">my Gatsby blog</a>.
-          Consequently, the markdown template's relative path to the image is simply
-          <code>./filename.jpg</code>. You could save all the images to a separate photos folder,
-          and tweak the template to include the correct relative path. Again, maybe not a beginner
-          task, but not impossible.
+          Copies of each photo are also saved in the same folder as the markdown
+          posts, because that's how I organize
+          <a href="https://www.rich-text.net/stream">my Gatsby blog</a>.
+          Consequently, the markdown template's relative path to the image is
+          simply <code>./filename.jpg</code>. You could save all the images to a
+          separate photos folder, and tweak the template to include the correct
+          relative path. Again, maybe not a beginner task, but not impossible.
         </p>
         <p>
-          Combining both of the paragraphs above: This code <b>is potentially destructive</b>; the original
-          photos are removed from the photos folder, and <b>should be</b> copied into the markdown
-          folder, but <b>maybe</b> something goes wrong? I hope not, but plan accordingly.
-          Back up your priceless memories before you run them through this thing...
+          Combining both of the paragraphs above: This code
+          <b>is potentially destructive</b>; the original photos are removed
+          from the photos folder, and <b>should be</b> copied into the markdown
+          folder, but <b>maybe</b> something goes wrong? I hope not, but plan
+          accordingly. Back up your priceless memories before you run them
+          through this thing...
         </p>
       </main>
     </div>

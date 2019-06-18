@@ -5,7 +5,7 @@ import path from 'path'
 import mdMaker from './mdMaker'
 import {rey} from './config'
 
-const fail = res => res.redirect('/admin')
+const fail = res => res.redirect('/make-posts')
 
 const requiredFields = [
   'date',
@@ -62,8 +62,8 @@ photoRouter.post('/', (req, res) => {
   // remove photo from original list
   fs.unlinkSync(`${existingPhotoFolder}/${filename}`)
 
-  // return user to admin
-  return res.redirect('/admin')
+  // return user to make-posts
+  return res.redirect('/make-posts')
 })
 
 export default photoRouter

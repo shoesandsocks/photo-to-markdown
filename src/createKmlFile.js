@@ -15,7 +15,7 @@ const templateHead = `<?xml version="1.0" encoding="UTF-8"?>
 const templateFoot = `</Document>
 </kml>`;
 
-export default exifArray => {
+export default (exifArray, thumbWidth) => {
   return new Promise((resolve, reject) => {
     if (exifArray.length == 0) reject(new Error("No data in array."));
     let kmlLayerFile = templateHead;
@@ -42,8 +42,8 @@ export default exifArray => {
         kmlLayerFile += `<Placemark><name>${clean(filename)}</name>
 <description>
 <![CDATA[
-<a href="${rootURL}/${filename}">
-<img src="${rootURL}/${filename}" width=200 />
+<a href="${rootURL}/orig/${filename}">
+<img src="${rootURL}/thumbs/${thumbWidth}px-${filename}" />
 </a>
 ]]>
 </description>
@@ -53,7 +53,7 @@ export default exifArray => {
 </Placemark>`;
         filenames.push(filename);
       } else {
-        console.log(`not importing ${filename}. Missing EXIF data.`);
+        reject(new Error(`not importing ${filename}. Missing EXIF data.`));
       }
     });
 

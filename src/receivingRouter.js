@@ -3,7 +3,7 @@ import fs from 'fs'
 import path from 'path'
 
 import mdMaker from './mdMaker'
-import rey from './config'
+import {rey} from './config'
 
 const fail = res => res.redirect('/admin')
 

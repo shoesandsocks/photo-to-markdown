@@ -1,7 +1,9 @@
 
 import path from 'path'
+import sharp from 'sharp'
 
 import { ExifImage } from 'exif'
+import { exec } from 'child_process';
 
 export const dmsToDecimal = (array) => {
   const d = array[0]
@@ -9,6 +11,14 @@ export const dmsToDecimal = (array) => {
   const s = array[2]
   return Number(d) + Number(m/60) + Number(s/3600)
 }
+
+export const makeThumbnail = (filename, width) => {
+  const image = path.resolve(process.cwd(), 'public/photos/', filename)
+  let thumbname = `${width}px-${filename}`
+  sharp(image)
+    .resize({ width: 400 })
+    .toFile(path.resolve(process.cwd(), 'public/generatedThumbs/', thumbname));
+};
 
 export const getExif = (filename, kml = false) => {
   return new Promise(function (resolve, reject) {

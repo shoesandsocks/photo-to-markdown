@@ -1,3 +1,2 @@
-const rey = false;
-
-export default rey;
+export const rey = false;
+export const thumbWidth = 400;

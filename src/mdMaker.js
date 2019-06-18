@@ -1,4 +1,4 @@
-import rey from './config'
+import {rey} from './config'
 
 var template = `---
 date: DATE

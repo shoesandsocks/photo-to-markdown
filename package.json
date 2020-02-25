@@ -19,10 +19,10 @@
   "author": "RL Brown <rlbrown72@gmail.com> (https://www.rich-text.net)",
   "license": "MIT",
   "dependencies": {
-    "backpack-core": "^0.8.3",
-    "ejs": "^2.6.1",
+    "backpack-core": "^0.8.4",
+    "ejs": "^2.7.4",
     "exif": "^0.6.0",
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "express-formidable": "^1.2.0",
     "sharp": "^0.22.1"
   }

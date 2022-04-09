@@ -1,4 +1,4 @@
-import {rey} from './config'
+import { rey } from "./config.js";
 
 var template = `---
 date: DATE
@@ -9,7 +9,7 @@ TAG---
 ![DESCRIPTION](./FILENAME)
 
 BODY
-`
+`;
 
 if (rey) {
   template = `---
@@ -24,39 +24,39 @@ TAG  - rey
 ---
 
 BODY
-`
+`;
 }
 
-
-
-const mdMaker = obj => {
-  const { tags, description, date, title, body, slug, year, month, day } = obj
+const mdMaker = (obj) => {
+  const { tags, description, date, title, body, slug, year, month, day } = obj;
   let filename = obj.filename; // might get reassigned
 
-  let fileDate = new Date(date)
+  let fileDate = new Date(date);
   if (isNaN(fileDate)) {
-    fileDate = new Date()
+    fileDate = new Date();
   }
-  fileDate = fileDate.toISOString()
+  fileDate = fileDate.toISOString();
 
-  let fileTitle = typeof title !== 'string' ? '' : title
-  if (fileTitle === '') { fileTitle = "''"} // to get actual quotes into md
+  let fileTitle = typeof title !== "string" ? "" : title;
+  if (fileTitle === "") {
+    fileTitle = "''";
+  } // to get actual quotes into md
 
-  const fileBody = typeof body !== 'string' ? '' : body
+  const fileBody = typeof body !== "string" ? "" : body;
   const fileDescription =
-    typeof description !== 'string' || description === ''
-      ? 'this post was auto-generated without alt text'
-      : description
+    typeof description !== "string" || description === ""
+      ? "this post was auto-generated without alt text"
+      : description;
 
-  const tagArray = [...new Set(tags.split(',').map(tag => tag.trim()))]
-  let tagsStringed = ''
+  const tagArray = [...new Set(tags.split(",").map((tag) => tag.trim()))];
+  let tagsStringed = "";
   if (
     !Array.isArray(tagArray) ||
-    (tagArray.length === 1 && tagArray[0] === '')
+    (tagArray.length === 1 && tagArray[0] === "")
   ) {
-    tagsStringed = '  - auto-generated\n'
+    tagsStringed = "  - auto-generated\n";
   } else {
-    tagArray.forEach(tag => (tagsStringed += `  - ${tag}\n`))
+    tagArray.forEach((tag) => (tagsStringed += `  - ${tag}\n`));
   }
 
   if (rey) {
@@ -64,19 +64,19 @@ const mdMaker = obj => {
   }
 
   const newfile = template
-    .replace('DATE', fileDate)
-    .replace('TITLE', fileTitle)
-    .replace('BODY', fileBody)
-    .replace('FILENAME', filename)
-    .replace('DESCRIPTION', fileDescription)
-    .replace('TAG', tagsStringed)
+    .replace("DATE", fileDate)
+    .replace("TITLE", fileTitle)
+    .replace("BODY", fileBody)
+    .replace("FILENAME", filename)
+    .replace("DESCRIPTION", fileDescription)
+    .replace("TAG", tagsStringed);
 
   if (rey) {
-    return newfile.replace('SLUG', slug)
+    return newfile.replace("SLUG", slug);
   } else {
-    return newfile
+    return newfile;
   }
   // return newfile
-}
+};
 
-export default mdMaker
+export default mdMaker;

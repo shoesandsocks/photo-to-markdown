@@ -1,31 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <% include ./partials/head %>
-  </head>
 
-  <body class="container-fluid">
-    <header><% include ./partials/header {route: route} %></header>
-    <div class="row">
-      <main class="col pt-5">
-        <h2>Photo Markdowner</h2>
-        <p>Turn image files into markdown blog posts.</p>
-        <p>
-          Drop files into the <code>/photos</code> folder and the app creates forms for each one.
-          Press Submit and the form is turned into a ready-to-post markdown file.
-        </p>
-        <p>See <a href="/about">About</a> for important details.</p>
-      </main>
-    </div>
-    <div class="row demo-img-wrap d-flex align-items-center border-top border-dark pt-5">
-      <img class="demo-img-1 col mw-340" src="./public/admin/form.png" />
-      <h1 class="col d-flex justify-content-center"><-></h1>
-      <img class="demo-img-2 col" src="./public/admin/md.png" />
-    </div>
+<head>
+  <%- include('partials/head') %>
+</head>
 
-    </div>
-    <footer><% include ./partials/footer %></footer>
+<body class="container-fluid">
+  <header>
+    <%- include('partials/header', {route: route}) %>
+  </header>
+  <div class="row">
+    <main class="col pt-5">
+      <h2>Photo Markdowner</h2>
+      <p>Turn image files into markdown blog posts.</p>
+      <p>
+        Drop files into the <code>/photos</code> folder and the app creates forms for each one.
+        Press Submit and the form is turned into a ready-to-post markdown file.
+      </p>
+      <p>See <a href="/about">About</a> for important details.</p>
+    </main>
+  </div>
+  <div class="row demo-img-wrap d-flex align-items-center border-top border-dark pt-5">
+    <img class="demo-img-1 col mw-340" src="./public/admin/form.png" />
+    <h1 class="col d-flex justify-content-center">
+      <->
+    </h1>
+    <img class="demo-img-2 col" src="./public/admin/md.png" />
+  </div>
 
-    <% include ./partials/bootstrapjs %>
-  </body>
+  </div>
+  <footer>
+    <%- include('partials/footer') %>
+  </footer>
+
+  <%- include('partials/bootstrapjs') %>
+</body>
+
 </html>

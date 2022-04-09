@@ -4,9 +4,6 @@
   "description": "Turn a folder of images into markdown blog posts.",
   "main": "index.js",
   "scripts": {
-    "dev": "backpack",
-    "build": "backpack build",
-    "start": "npm run build && node ./build/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -19,11 +16,11 @@
   "author": "RL Brown <rlbrown72@gmail.com> (https://www.rich-text.net)",
   "license": "MIT",
   "dependencies": {
-    "backpack-core": "^0.8.4",
-    "ejs": "^2.7.4",
+    "ejs": "^3.1.6",
     "exif": "^0.6.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-formidable": "^1.2.0",
-    "sharp": "^0.22.1"
-  }
+    "sharp": "^0.30.3"
+  },
+  "type": "module"
 }

@@ -3,6 +3,8 @@ import sharp from "sharp";
 import pkg from "exif";
 const { ExifImage } = pkg;
 
+import { thumbWidth } from "./config.js";
+
 export const dmsToDecimal = (array) => {
   try {
     const d = array[0];
@@ -19,7 +21,7 @@ export const makeThumbnail = (filename, width) => {
   const image = path.resolve(process.cwd(), "public/photos/", filename);
   let thumbname = `${width}px-${filename}`;
   sharp(image)
-    .resize({ width: 400 })
+    .resize({ width: thumbWidth })
     .toFile(path.resolve(process.cwd(), "public/generatedThumbs/", thumbname));
 };
 

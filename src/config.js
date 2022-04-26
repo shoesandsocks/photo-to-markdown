@@ -1,2 +1,2 @@
 export const rey = false;
-export const thumbWidth = 400;
+export const thumbWidth = 200;

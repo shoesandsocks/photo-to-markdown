@@ -20,7 +20,7 @@
     "exif": "^0.6.0",
     "express": "^4.17.3",
     "express-formidable": "^1.2.0",
-    "sharp": "^0.30.3"
+    "sharp": "^0.30.5"
   },
   "type": "module"
 }

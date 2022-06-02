@@ -16,7 +16,7 @@
   "author": "RL Brown <rlbrown72@gmail.com> (https://www.rich-text.net)",
   "license": "MIT",
   "dependencies": {
-    "ejs": "^3.1.6",
+    "ejs": "^3.1.7",
     "exif": "^0.6.0",
     "express": "^4.17.3",
     "express-formidable": "^1.2.0",
